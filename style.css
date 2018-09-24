@@ -1,0 +1,74 @@
+.amrza-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  z-index: 999999999;
+  font-size: 1.1rem;
+}
+
+.amrza-modal-box {
+  width: 400px;
+  margin: 0 auto;
+  margin-top: 10%;
+  border: darkgray 1px solid;
+  background-color: white;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+  border-radius: 3px;
+}
+
+.amrza-modal-box-title {
+  padding: 15px;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.amrza-modal-box-content {
+  padding: 0px 20px 20px 20px;
+  line-height: 1.5;
+}
+
+.amrza-modal-box-buttons-layer {
+  direction: rtl;
+  padding: 15px;
+}
+
+.amrza-modal-box-button {
+  padding: 10px 15px;
+  margin: 0px 10px;
+  color: white;
+  font-weight: bold;
+  font-size: 0.8rem;
+  border-radius: 2px;
+}
+
+.amrza-modal-box-button-ok {
+  background-color: LimeGreen ;
+  border: solid 1px MediumSeaGreen;
+}
+
+.amrza-modal-box-button-yes {
+  background-color: #00BBFA;
+  border: solid 1px #54ABFF;
+}
+
+.amrza-modal-box-button-no {
+  background-color: Tomato;
+  border: solid 1px IndianRed;
+}
+
+.amrza-modal-box-button-cancel {
+  background-color: MediumPurple;
+  border: solid 1px MediumSlateBlue;
+}
+
+.amrza-modal-rtl {direction: rtl; text-align: right;}
+.amrza-modal-ltr {direction: ltr; text-align: left;}
+
+@media (max-width:768px) {
+
+}

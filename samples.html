@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fa-IR">
+<head>
+<title>amrza.Modal samples</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- include modal css -->
+<link rel="stylesheet" href="style.css" type="text/css"/>
+</head>
+
+<body>
+    <p><a href="#s1" id="s1">Empty, with no options.</a></p>
+    <p><a href="#s2" id="s2">With title and content.</a></p>
+    <p><a href="#s3" id="s3">Content with line breaks.</a></p>
+    <p><a href="#s4" id="s4">Custom width.</a></p>
+    <p><a href="#s5" id="s5">Custom position.</a></p>
+    <p><a href="#s6" id="s6">Custom Ok button.</a></p>
+    <p><a href="#s7" id="s7">With all buttons.</a></p>
+    <p><a href="#s8" id="s8">RTL</a></p>
+    <p><a href="#s9" id="s9">RTL with translation.</a></p>
+    <p><a href="#s10" id="s10">RTL with translation and all buttons.</a></p>
+    <p><a href="#s10" id="s11">Inject and using values.</a></p>
+    <p><a href="#s10" id="s12">Custom HTML</a></p>
+    <p><a href="#s10" id="s13">Custom HTML advanced!</a></p>
+</body>
+
+<!-- include modal js -->
+<script type="text/javascript" src="modal.js" ></script>
+
+<script>
+
+document.getElementById("s1").addEventListener("click", function(){
+
+  var m = new amrza.Modal({}).show();
+
+});
+
+
+document.getElementById("s2").addEventListener("click", function(){
+
+  var m = new amrza.Modal({
+    title: 'Oh!',
+    text: "I didn't see you there :)",
+  })
+  .show();
+
+});
+
+
+document.getElementById("s3").addEventListener("click", function(){
+
+  var m = new amrza.Modal({
+    title: 'Line break',
+    text: "Lets break this line here <br> and start again.",
+  })
+  .show();
+
+});
+
+
+document.getElementById("s4").addEventListener("click", function(){
+
+  var m = new amrza.Modal({
+    width: 500,
+    title: "Custom width",
+    text: "this is what 500px looks like!",
+  })
+  .show();
+
+});
+
+
+document.getElementById("s5").addEventListener("click", function(){
+
+  var m = new amrza.Modal({
+    x: 100,
+    y: 100,
+    title: "Custom position",
+    text: "how did i end up here?",
+  })
+  .show();
+
+});
+
+document.getElementById("s6").addEventListener("click", function(){
+
+  var m = new amrza.Modal({
+    title: "Custom OK",
+    text: "This ok button, is not like other ok buttons!",
+    ok: function(e, self) {
+      alert("Huh!");
+      self.close();
+    }
+  })
+  .show();
+
+});
+
+document.getElementById("s7").addEventListener("click", function(){
+
+  var m = new amrza.Modal({
+    title: "All buttons",
+    text: "You can have other buttons too...",
+    ok: function(e, self) { 
+      self.close(); 
+    },
+    yes: function(e, self) { 
+      self.close(); 
+    },
+    no: function(e, self) { 
+      self.close(); 
+    },
+    cancel: function(e, self) { 
+      self.close(); 
+    },
+  })
+  .show();
+
+});
+
+document.getElementById("s8").addEventListener("click", function(){
+
+  var m = new amrza.Modal({
+    rtl: true,
+    title: "عنوان",
+    text: "به راه راست هدایت شدم :)",
+  })
+  .show();
+
+});
+
+document.getElementById("s9").addEventListener("click", function(){
+
+  var m = new amrza.Modal({
+    rtl: true,
+    title: "عنوان",
+    text: "به راه راست هدایت شدم :)",
+  })
+  .show(function(self) {
+    self.ok.innerHTML = "باشه";
+  });
+
+});
+
+document.getElementById("s10").addEventListener("click", function(){
+
+  var m = new amrza.Modal({
+    rtl: true,
+    title: "عنوان",
+    text: "به راه راست هدایت شدم :)",
+    ok: function(e, self) { 
+      self.close(); 
+    },
+    yes: function(e, self) { 
+      self.close(); 
+    },
+    no: function(e, self) { 
+      self.close(); 
+    },
+    cancel: function(e, self) { 
+      self.close(); 
+    },
+  })
+  .show(function(self) {
+    self.ok.innerHTML = "باشه";
+    self.yes.innerHTML = "بلی";
+    self.no.innerHTML = "خیر";
+    self.cancel.innerHTML = "بیخیال";
+  });
+
+});
+
+document.getElementById("s11").addEventListener("click", function(){
+
+  var m = new amrza.Modal({
+    title: "Custom args",
+    text: "You can inject arbitrary values to modal. here, we inject 'john' and use it in an alert().",
+    ok: function(e, self) {
+      alert("Hi " + self.args['name']);
+      self.close();
+    }
+  });
+
+  m.args['name'] = "John";
+
+  m.show();
+
+});
+
+document.getElementById("s12").addEventListener("click", function(){
+
+  var m = new amrza.Modal({
+    title: "Custom HTML"
+  })
+  .html(
+    'String',
+    '<p style="color:white; background:blue">This text is a custom p tag</p>',
+    false
+  )
+  .show();
+
+});
+
+document.getElementById("s13").addEventListener("click", function(){
+// Create a html layer.
+  var myhtml       = document.createElement("div");
+  myhtml.style     =  "padding:10px";
+  myhtml.innerHTML = "please enter your name:"
+
+  // Create a textbox.
+  var myInput   = document.createElement("input");
+  myInput.type  = 'text';
+  myInput.id    = 'modal-question';
+  myInput.style = "display:block; width:250px; padding:10px; margin:20px 0;"
+
+  // Create a button.
+  var myButton       = document.createElement("button");
+  myButton.className = "amrza-modal-box-button amrza-modal-box-button-ok";
+  myButton.innerHTML = "ok";
+
+  myButton.addEventListener("click", function(e) {
+    alert("Hi " + document.getElementById('modal-question').value);
+    m.close();
+  });
+
+  myhtml.appendChild(myInput);
+  myhtml.appendChild(myButton);
+
+  var m = new amrza.Modal({
+    width: 300,
+    height: 150,
+  })
+  .html('Node', myhtml, true)
+  .show();
+});
+
+</script>
+</html>
