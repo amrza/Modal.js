@@ -115,7 +115,7 @@ var Modal = (function () {
     }
 
     if (typeof this._options.yes === "function") {
-      this.yes = this._createButton("yes");
+      this.yes = this._createButton("Yes");
       this.buttons.appendChild(this.yes);
     }
 
