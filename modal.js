@@ -15,7 +15,12 @@
 
 'use strict';
 
-var log = console.log;
+// Status Enum
+var Status = Object.freeze({
+    Open: true,
+    Close: false
+});
+
 
 /**
  * Update values in firstObj, with the new values provided by secondObj.
@@ -135,9 +140,8 @@ var Modal = (function () {
       this.buttons.className += " amrza-modal-ltr";
     }
 
-    // Modal status (flags)
-    this._isShowing = false;
-    this._isClosed = false;
+    // Default modal status (flags)
+    this._status = Status.Close;
 
     // Arbitrary arguments! in case you want to inject some values to modal box.
     this.args = {};
@@ -210,8 +214,8 @@ var Modal = (function () {
    */
   Modal.prototype.show = function(func) {
     // Dont do anything If box is on screen right now.
-    if (this._isShowing === true) {
-      return this;
+    if (this._status === Status.Open) {
+        return this;
     }
 
     if (typeof func === "function") {
@@ -219,8 +223,7 @@ var Modal = (function () {
     }
 
     document.body.appendChild(this.modal);
-    this._isShowing = true;
-    this._isClosed = false;
+    this._status = Status.Open;
     return this;
   };
 
@@ -232,8 +235,8 @@ var Modal = (function () {
    */
   Modal.prototype.close = function(func) {
     // Dont do anything if box is already closed.
-    if (this._isClosed  === true) {
-      return this;
+    if (this._status === Status.Close) {
+        return this;
     }
 
     if (typeof func === "function") {
@@ -241,8 +244,7 @@ var Modal = (function () {
     }
 
     this.modal.parentNode.removeChild(this.modal)
-    this._isClosed = true;
-    this._isShowing = false;
+    this._status = Status.Close;
     return this;
   };
   
